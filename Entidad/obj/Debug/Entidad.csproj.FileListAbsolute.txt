@@ -1,0 +1,6 @@
+C:\Users\jonny\Desktop\PIII\Entidad\bin\Debug\Entidad.dll
+C:\Users\jonny\Desktop\PIII\Entidad\bin\Debug\Entidad.pdb
+C:\Users\jonny\Desktop\PIII\Entidad\obj\Debug\Entidad.csprojAssemblyReference.cache
+C:\Users\jonny\Desktop\PIII\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+C:\Users\jonny\Desktop\PIII\Entidad\obj\Debug\Entidad.dll
+C:\Users\jonny\Desktop\PIII\Entidad\obj\Debug\Entidad.pdb

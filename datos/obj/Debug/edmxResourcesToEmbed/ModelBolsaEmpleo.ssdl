@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bolsaproyectoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="categorias">
+    <Key>
+      <PropertyRef Name="id_Categoria" />
+    </Key>
+    <Property Name="id_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="puesto_trabajo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_Compania" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="tipo" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="logo" Type="image" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Posicion" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Ubicación" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Categoría" Type="int" Nullable="false" />
+    <Property Name="Descripcion_trabajo" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Como_aplicar" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_puesto_trabajo_categorias">
+    <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+    <End Role="puesto_trabajo" Type="Self.puesto_trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id_Categoria" />
+      </Principal>
+      <Dependent Role="puesto_trabajo">
+        <PropertyRef Name="Categoría" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bolsaproyectoDBModelStoreContainer">
+    <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="puesto_trabajo" EntityType="Self.puesto_trabajo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_puesto_trabajo_categorias" Association="Self.FK_puesto_trabajo_categorias">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="puesto_trabajo" EntitySet="puesto_trabajo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

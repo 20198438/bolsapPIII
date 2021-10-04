@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bolsaproyectoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categorias">
+          <Key>
+            <PropertyRef Name="id_Categoria" />
+          </Key>
+          <Property Name="id_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="puesto_trabajo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_Compania" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="logo" Type="image" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Posicion" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Ubicación" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Categoría" Type="int" Nullable="false" />
+          <Property Name="Descripcion_trabajo" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Como_aplicar" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_puesto_trabajo_categorias">
+          <End Role="categorias" Type="Self.categorias" Multiplicity="1" />
+          <End Role="puesto_trabajo" Type="Self.puesto_trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="id_Categoria" />
+            </Principal>
+            <Dependent Role="puesto_trabajo">
+              <PropertyRef Name="Categoría" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bolsaproyectoDBModelStoreContainer">
+          <EntitySet Name="categorias" EntityType="Self.categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="puesto_trabajo" EntityType="Self.puesto_trabajo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_puesto_trabajo_categorias" Association="Self.FK_puesto_trabajo_categorias">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="puesto_trabajo" EntitySet="puesto_trabajo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bolsaproyectoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="id_Categoria" />
+          </Key>
+          <Property Name="id_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="puesto_trabajo" Relationship="Self.FK_puesto_trabajo_categorias" FromRole="categorias" ToRole="puesto_trabajo" />
+        </EntityType>
+        <EntityType Name="puesto_trabajo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_Compania" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="logo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Posicion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ubicación" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Categoría" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion_trabajo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Como_aplicar" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK_puesto_trabajo_categorias" FromRole="puesto_trabajo" ToRole="categorias" />
+        </EntityType>
+        <Association Name="FK_puesto_trabajo_categorias">
+          <End Role="categorias" Type="Self.categoria" Multiplicity="1" />
+          <End Role="puesto_trabajo" Type="Self.puesto_trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categorias">
+              <PropertyRef Name="id_Categoria" />
+            </Principal>
+            <Dependent Role="puesto_trabajo">
+              <PropertyRef Name="Categoría" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bolsa_de_EmpleosContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categorias" EntityType="Self.categoria" />
+          <EntitySet Name="puesto_trabajo" EntityType="Self.puesto_trabajo" />
+          <AssociationSet Name="FK_puesto_trabajo_categorias" Association="Self.FK_puesto_trabajo_categorias">
+            <End Role="categorias" EntitySet="categorias" />
+            <End Role="puesto_trabajo" EntitySet="puesto_trabajo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bolsaproyectoDBModelStoreContainer" CdmEntityContainer="Bolsa_de_EmpleosContext">
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="bolsaproyectoDBModel.categoria">
+              <MappingFragment StoreEntitySet="categorias">
+                <ScalarProperty Name="id_Categoria" ColumnName="id_Categoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="puesto_trabajo">
+            <EntityTypeMapping TypeName="bolsaproyectoDBModel.puesto_trabajo">
+              <MappingFragment StoreEntitySet="puesto_trabajo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre_Compania" ColumnName="nombre_Compania" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="Ubicación" ColumnName="Ubicación" />
+                <ScalarProperty Name="Categoría" ColumnName="Categoría" />
+                <ScalarProperty Name="Descripcion_trabajo" ColumnName="Descripcion_trabajo" />
+                <ScalarProperty Name="Como_aplicar" ColumnName="Como_aplicar" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

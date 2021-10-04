@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bolsaproyectoDBModelStoreContainer" CdmEntityContainer="Bolsa_de_EmpleosContext">
+    <EntitySetMapping Name="categorias">
+      <EntityTypeMapping TypeName="bolsaproyectoDBModel.categoria">
+        <MappingFragment StoreEntitySet="categorias">
+          <ScalarProperty Name="id_Categoria" ColumnName="id_Categoria" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="puesto_trabajo">
+      <EntityTypeMapping TypeName="bolsaproyectoDBModel.puesto_trabajo">
+        <MappingFragment StoreEntitySet="puesto_trabajo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_Compania" ColumnName="nombre_Compania" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="logo" ColumnName="logo" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="Ubicación" ColumnName="Ubicación" />
+          <ScalarProperty Name="Categoría" ColumnName="Categoría" />
+          <ScalarProperty Name="Descripcion_trabajo" ColumnName="Descripcion_trabajo" />
+          <ScalarProperty Name="Como_aplicar" ColumnName="Como_aplicar" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

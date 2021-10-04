@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bolsaproyectoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="categoria">
+    <Key>
+      <PropertyRef Name="id_Categoria" />
+    </Key>
+    <Property Name="id_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="puesto_trabajo" Relationship="Self.FK_puesto_trabajo_categorias" FromRole="categorias" ToRole="puesto_trabajo" />
+  </EntityType>
+  <EntityType Name="puesto_trabajo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_Compania" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="logo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="URL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Posicion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ubicación" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Categoría" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion_trabajo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Como_aplicar" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="categoria" Relationship="Self.FK_puesto_trabajo_categorias" FromRole="puesto_trabajo" ToRole="categorias" />
+  </EntityType>
+  <Association Name="FK_puesto_trabajo_categorias">
+    <End Role="categorias" Type="Self.categoria" Multiplicity="1" />
+    <End Role="puesto_trabajo" Type="Self.puesto_trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categorias">
+        <PropertyRef Name="id_Categoria" />
+      </Principal>
+      <Dependent Role="puesto_trabajo">
+        <PropertyRef Name="Categoría" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Bolsa_de_EmpleosContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categorias" EntityType="Self.categoria" />
+    <EntitySet Name="puesto_trabajo" EntityType="Self.puesto_trabajo" />
+    <AssociationSet Name="FK_puesto_trabajo_categorias" Association="Self.FK_puesto_trabajo_categorias">
+      <End Role="categorias" EntitySet="categorias" />
+      <End Role="puesto_trabajo" EntitySet="puesto_trabajo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
